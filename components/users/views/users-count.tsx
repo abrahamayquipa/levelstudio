@@ -2,7 +2,7 @@
 
 import { FC } from "react";
 
-export const UserCount: FC = () => {
+export const UsersCount: FC = () => {
     return (
         <div>
             <span>Total: 5452</span>
@@ -10,4 +10,4 @@ export const UserCount: FC = () => {
     );
 }
 
-export default UserCount;
+export default UsersCount;

@@ -1,13 +1,23 @@
 "use client"
 
 import { FC } from "react";
-import { Users } from "@/reports";
+import { Users as UsersReport } from "@/reports";
 
-export const User: FC = () => {
-    const fakeData = [{name: "panky", age: 15}]
+export const Users: FC = () => {
+    const fakeData = [{name: "panky", age: 20}, {name: "abraham", age: 20}, {name: "jeff", age: 20}];
+
     return (
-        <Users data={fakeData}/>
+        <table className="table w-full">
+        <thead  className="table-header-group">
+            <tr className="table-row">
+                <td className="table-cell text-left">Nombre</td>
+                <td className="table-cell text-left">Edad</td>
+                <td className="table-cell text-left">Operaciones</td>
+            </tr>
+        </thead>
+        <UsersReport data={fakeData}/>
+    </table>
     );
 }
 
-export default User;
+export default Users;

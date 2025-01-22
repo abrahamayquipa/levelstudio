@@ -15,8 +15,8 @@ export const Menu: FC<MenuProps> = () => {
     return (
         <div
             className={`bg-[#5f6c37] transition-all duration-300 ${
-                isOpen ? "w-48" : "w-12"
-            } flex flex-col justify-between items-start shadow-lg relative h-full rounded-r-2xl`}
+                isOpen ? "w-48" : "w-0 px-0"
+            } flex flex-col justify-between items-start px-4 shadow-lg relative h-full rounded-r-2xl`}
         >
             {/* abrir y cerrar menu */}
             <button
@@ -27,23 +27,24 @@ export const Menu: FC<MenuProps> = () => {
             </button>
 
             {/* menu */}
-            <div className="flex flex-col gap-5 mt-4 text-white flex-grow">
-                <button className="flex items-center gap-2 px-4 py-2 hover:bg-[#4e5a2d] rounded-md">
-                    <span className="material-icons"></span>
-                    {isOpen && <span>Inicio</span>}
-                </button>
-                <button className="flex items-center gap-2 px-4 py-2 hover:bg-[#4e5a2d] rounded-md">
-                    <span className="material-icons"></span>
-                    {isOpen && <span>Usuarios</span>}
-                </button>
-            </div>
-
-            <div className="mb-5 text-white">
-                <button className="flex items-center gap-2 px-4 py-2 hover:bg-[#4e5a2d] rounded-md">
-                    <span className="material-icons"></span>
-                    {isOpen && <span>Ajustes</span>}
-                </button>
-            </div>
+            <section className="flex flex-col justify-between h-full w-full text-white">
+                <div className="mt-40">
+                    <button className="w-full flex items-center px-4 py-2 hover:bg-[#4e5a2d] rounded-md">
+                        <span className="material-icons"></span>
+                        {isOpen && <span>Inicio</span>}
+                    </button>
+                    <button className="w-full flex items-center px-4 py-2 hover:bg-[#4e5a2d] rounded-md">
+                        <span className="material-icons"></span>
+                        {isOpen && <span>Usuarios</span>}
+                    </button>
+                </div>
+                <div className="mb-8">
+                    <button className="w-full flex items-center px-4 py-2 hover:bg-[#4e5a2d] rounded-md">
+                        <span className="material-icons"></span>
+                        {isOpen && <span>Ajustes</span>}
+                    </button>
+                </div>
+            </section>
         </div>
     );
 };

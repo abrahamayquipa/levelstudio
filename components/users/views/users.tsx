@@ -7,16 +7,16 @@ export const Users: FC = () => {
     const fakeData = [{name: "panky", age: 20}, {name: "abraham", age: 20}, {name: "jeff", age: 20}];
 
     return (
-        <table className="table w-full">
-        <thead  className="table-header-group">
-            <tr className="table-row">
-                <td className="table-cell text-left">Nombre</td>
-                <td className="table-cell text-left">Edad</td>
-                <td className="table-cell text-left">Operaciones</td>
-            </tr>
-        </thead>
-        <UsersReport data={fakeData}/>
-    </table>
+        <table className="w-full mt-4 table-fixed">
+            <thead>
+                <tr>
+                    <td className="w-[85%] px-4 py-2 font-medium">Nombre</td>
+                    <td className="px-4 py-2 font-medium">Edad</td>
+                    <td className="px-4 py-2 font-medium"></td>
+                </tr>
+            </thead>
+            <UsersReport data={fakeData}/>
+        </table>
     );
 }
 

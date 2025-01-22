@@ -14,7 +14,7 @@ export default function RootLayout({
   return (
     <html lang="es">
       <body>
-        <main className="min-h-screen grid p-5">
+        <main className="min-h-screen grid">
           {children}
         </main>
       </body>

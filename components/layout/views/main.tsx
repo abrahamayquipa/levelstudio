@@ -4,8 +4,8 @@ import { Users, UsersCount, OpenDialog } from "@/components/users"
 
 export const Main = () => {
     return (
-        <section className="w-full">
-            <article className="flex justify-end items-center w-full my-8">
+        <section className="w-full mx-8">
+            <article className="flex justify-end items-center w-full my-4">
                 <UsersCount/>
                 <OpenDialog />
             </article>

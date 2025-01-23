@@ -1,52 +1,20 @@
 "use client"
 
-import * as React from "react";
+import { useState } from "react";
 import { DialogHeader, DialogTitle, DialogFooter } from "@levelstudio/components/ui/dialog";
 
-
-// Definición del componente Button
-const Button = React.forwardRef<HTMLButtonElement, React.ButtonHTMLAttributes<HTMLButtonElement>>(
-    ({ className, ...props }, ref) => {
-        return (
-            <button
-                ref={ref}
-                className={`px-4 py-2 rounded bg-[#d19b36] ${className}`}
-                {...props}
-            />
-        );
-    }
-);
-Button.displayName = "Button";
-
-// Definición del componente Input
-const Input = React.forwardRef<HTMLInputElement, React.InputHTMLAttributes<HTMLInputElement>>(
-    ({ className, ...props }, ref) => {
-        return (
-            <input
-                ref={ref}
-                className={`border px-4 py-2 rounded ${className}`}
-                {...props}
-            />
-        );
-    }
-);
-Input.displayName = "Input";
-
-// Definición del componente Label
-const Label = React.forwardRef<HTMLLabelElement, React.LabelHTMLAttributes<HTMLLabelElement>>(
-    ({ className, ...props }, ref) => {
-        return (
-            <label
-                ref={ref}
-                className={`block text-sm font-medium text-gray-700 ${className}`}
-                {...props}
-            />
-        );
-    }
-);
-Label.displayName = "Label";
-
 export function AddUserForm() {
+    const [data, setData] = useState({name: "", age: 0});
+
+    const handleSubmit = (e: any) => {
+        setData({
+            name: e.target.name.value,
+            age: parseInt(e.target.age.value),
+        });
+    };
+
+    console.log(data);
+
     return (
         <form className="grid gap-4 py-4">
             <DialogHeader>
@@ -54,25 +22,25 @@ export function AddUserForm() {
             </DialogHeader>
             <hr className="border-t border-black my-2" />
             <div className="grid gap-1">
-                <Label htmlFor="name">
-                    Nombre
-                </Label>
-                <Input
+                <label htmlFor="name">Nombre</label>
+                <input
                     id="name"
                     placeholder="Escribir"
+                    onChange={handleSubmit}
                 />
             </div>
             <div className="grid gap-1">
-                <Label htmlFor="age">
-                    Edad
-                </Label>
-                <Input
+                <label htmlFor="age">Edad</label>
+                <input
                     id="age"
                     placeholder="Escribir"
+                    onChange={handleSubmit}
                 />
             </div>
             <DialogFooter>
-                <Button type="submit" className="w-full">Añadir</Button>
+                <button type="submit" className="w-full" >
+                    Añadir
+                </button>
             </DialogFooter>
         </form>
     );

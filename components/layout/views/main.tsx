@@ -1,13 +1,14 @@
 "use client"
 
-import { Users, UsersCount, OpenDialog } from "@levelstudio/components/users"
+import { Users, UsersCount } from "@levelstudio/components/users"
+import { AddDialog } from "@levelstudio/components/users/controls/add-dialog";
 
 export const Main = () => {
     return (
         <section className="w-full mx-8">
             <article className="flex justify-end items-center w-full my-4">
                 <UsersCount/>
-                <OpenDialog />
+                <AddDialog />
             </article>
             <Users />
         </section>

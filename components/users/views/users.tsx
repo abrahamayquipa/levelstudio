@@ -2,21 +2,13 @@
 
 import { FC } from "react";
 import { Users as UsersReport } from "@levelstudio/reports";
+import { useGetUsers } from "@levelstudio/hooks";
 
 export const Users: FC = () => {
-    const fakeData = [{name: "panky", age: 20}, {name: "abraham", age: 20}, {name: "jeff", age: 20}];
+    const [users, loading, error] = useGetUsers();
 
     return (
-        <table className="w-full mt-4 table-fixed">
-            <thead>
-                <tr>
-                    <td className="w-[85%] px-4 py-2 font-medium">Nombre</td>
-                    <td className="px-4 py-2 font-medium">Edad</td>
-                    <td className="px-4 py-2 font-medium"></td>
-                </tr>
-            </thead>
-            <UsersReport data={fakeData}/>
-        </table>
+        <UsersReport rows={users} />
     );
 }
 

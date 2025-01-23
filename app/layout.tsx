@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { ApolloWrapper } from "@levelstudio/utiles/apollo/client";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -15,7 +16,9 @@ export default function RootLayout({
     <html lang="es">
       <body>
         <main className="min-h-screen grid">
-          {children}
+          <ApolloWrapper>
+            {children}
+          </ApolloWrapper>
         </main>
       </body>
     </html>

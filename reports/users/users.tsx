@@ -1,31 +1,26 @@
 "use client"
 
-import { User } from "@levelstudio/types";
 import { FC } from "react";
-import { EditIcon } from "@levelstudio/components/ui";
-import { DeleteIcon } from "@levelstudio/components/ui";
+import { ColumnsUser } from "@levelstudio/reports";
+import { User } from "@levelstudio/types";
 
 interface UserProps {
-    data: User[];
+    rows: User[];
 }
 
-export const Users: FC<UserProps> = ({data}) => {
+export const Users: FC<UserProps> = ({ rows }) => {
     return (
-        <tbody>
-            {data.map((item, index) => (
-                <tr key={index} className={`py-16 ${index % 2 === 0 ? "bg-[#a5a5a5] bg-opacity-10" : ""}`}>
-                    <td className="px-4 py-2">{item.name}</td>
-                    <td className="px-4 py-2">{item.age}</td>
-                    <td className="flex px-4 py-2">
-                        <button className="mr-8">
-                            <DeleteIcon/>
-                        </button>
-                        <button>
-                            <EditIcon/>
-                        </button>
-                    </td>
+        <table className="w-full mt-4 table-fixed">
+            <thead>
+                <tr>
+                    <td className="w-[85%] px-4 py-2 font-medium">Nombre</td>
+                    <td className="px-4 py-2 font-medium">Edad</td>
+                    <td className="px-4 py-2 font-medium"></td>
                 </tr>
-            ))}
-        </tbody>
+            </thead>
+            <tbody>
+                <ColumnsUser data={rows}/>
+            </tbody>
+        </table>
     );
 }

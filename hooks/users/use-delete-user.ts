@@ -1,27 +1,27 @@
 import { useQuery, useSubscription } from "@apollo/client";
 import {
     GET_USERS,
-    CREATE_USER
+    DELETE_USER
 } from "@levelstudio/schemas"
 import { User } from "@levelstudio/types";
 
-export const useCreateUser = (): [
-    (user: User) => Promise<void>,
+export const useDeleteUser = (): [
+    (id: number) => Promise<void>,
     boolean,
     Error | undefined
 ] => {
     const { error, loading, refetch } = useQuery(GET_USERS);
 
-    const createUser = async (user: User): Promise<void> => {
-        console.log(user);
+    const deleteUser = async (id: number): Promise<void> => {
+        console.log(id);
         await refetch();
     };
     /*
-    useSubscription(CREATE_USER, {
+    useSubscription(DELETE_USER, {
         onSubscriptionData: () => {
             refetch();
         },
     });*/
 
-    return [createUser, loading, error];
+    return [deleteUser, loading, error];
 };

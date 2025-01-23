@@ -11,12 +11,14 @@ export const useGetUsers = (): [User[], boolean, Error | undefined] => {
             age: parseInt(age, 10),
         })
     );
-
+/*
     useSubscription(GET_USERS, {
         onSubscriptionData: () => {
             refetch();
         },
-    });
+    });*/
+
+    
 
     return [dataComputed, loading, error];
 };

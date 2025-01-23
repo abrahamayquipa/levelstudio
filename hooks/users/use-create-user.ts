@@ -16,12 +16,12 @@ export const useCreateUser = (): [
         console.log(`Creating user: ${JSON.stringify(user)}`);
         await refetch();
     };
-
+/*
     useSubscription(CREATE_USER, {
         onSubscriptionData: () => {
             refetch();
         },
-    });
+    });*/
 
     return [createUser, loading, error];
 };

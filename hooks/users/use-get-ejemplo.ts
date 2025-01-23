@@ -6,10 +6,10 @@ import {
     DELETE_EMPLOYEE_SUBS,
 } from "@levelstudio/schemas";
 
-import { EmployeeColumns } from "@levelstudio/types";
+import { Employee } from "@levelstudio/types";
 
 export const useGetEmployees = (): [
-    EmployeeColumns[],
+    Employee[],
     () => void,
     boolean,
     Error | undefined
@@ -17,7 +17,7 @@ export const useGetEmployees = (): [
     const { data, error, loading, refetch } = useQuery(GET_EMPLOYEES);
 
     const dataComputed = (data?.employees || []).map(
-        ({ id, dni, names, lastnames, email, remarks }: any): EmployeeColumns => ({
+        ({ id, dni, names, lastnames, email, remarks }: any): Employee => ({
             id: parseInt(id),
             dni: parseInt(dni),
             names,

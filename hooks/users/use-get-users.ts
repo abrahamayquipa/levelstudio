@@ -1,43 +1,22 @@
-"use client";
-
+import { useQuery, useSubscription } from "@apollo/client";
+import { GET_USERS } from "@levelstudio/schemas"
 import { User } from "@levelstudio/types";
-import { fetchUsers } from "@levelstudio/services/fetch-users";
-import { useEffect, useState } from "react";
 
-export const useGetUsers = ({
-    search,
-    pageSize,
-} : {
-    search: string;
-    pageSize?: number;
-}) => {
-    const [users, setUsers] = useState<User[]>([]);
-    const [error, setError] = useState("");
-    const [loading, setLoading] = useState(search ? true : false);
+export const useGetUsers = (): [User[], boolean, Error | undefined] => {
+    const { data, error, loading, refetch } = useQuery(GET_USERS);
 
-    const getUsers = async () => {
-        try {
-            if (search) {
-                setLoading(true);
-                const requestedUsers = await fetchUsers({ search, pageSize });
-                setUsers(requestedUsers);
-                setError("");
-            }
-        } catch (error) {
-            if (error instanceof Error) {
-                setError(error.message);
-                setUsers([]);
-            }
-        } finally {
-            setLoading(false);
-        }
-    };
+    const dataComputed = (data?.users || []).map(
+        ({ name, age }: any): User => ({
+            name,
+            age: parseInt(age, 10),
+        })
+    );
 
-    useEffect(() => {
-        if (search) {
-            getUsers();
-        }
-    }, [search, pageSize]);
+    useSubscription(GET_USERS, {
+        onSubscriptionData: () => {
+            refetch();
+        },
+    });
 
-    return { users, loading, error };
+    return [dataComputed, loading, error];
 };

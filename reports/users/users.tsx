@@ -2,10 +2,13 @@
 
 import { FC } from "react";
 import { ColumnsUser } from "@levelstudio/reports";
+import { User } from "@levelstudio/types";
 
-export const Users: FC = () => {
-    const fakeData = [{name: "panky", age: 20}, {name: "abraham", age: 20}, {name: "jeff", age: 20}];
+interface UserProps {
+    rows: User[];
+}
 
+export const Users: FC<UserProps> = ({ rows }) => {
     return (
         <table className="w-full mt-4 table-fixed">
             <thead>
@@ -16,7 +19,7 @@ export const Users: FC = () => {
                 </tr>
             </thead>
             <tbody>
-                <ColumnsUser data={fakeData}/>
+                <ColumnsUser data={rows}/>
             </tbody>
         </table>
     );

@@ -5,11 +5,11 @@ import { FC } from "react";
 import { EditIcon } from "@levelstudio/components/ui";
 import { DeleteIcon } from "@levelstudio/components/ui";
 
-interface UserProps {
+interface ColumnsUserProps {
     data: User[];
 }
 
-export const ColumnsUser: FC<UserProps>  = ({data}) => {
+export const ColumnsUser: FC<ColumnsUserProps>  = ({data}) => {
     return (
         <>
             {data.map((item, index) => (

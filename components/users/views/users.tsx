@@ -6,9 +6,9 @@ import { useGetUsers } from "@levelstudio/hooks";
 
 export const Users: FC = () => {
     const [users, loading, error] = useGetUsers();
-    console.log(users)
+
     return (
-        <UsersReport />
+        <UsersReport rows={users} />
     );
 }
 

@@ -1,5 +1,4 @@
-import { Main } from "@/components/layout";
-import {Menu} from "@/components/layout/controls/menu";
+import { Main, Menu } from "@levelstudio/components/layout";
 
 export default function Home() {
     return (

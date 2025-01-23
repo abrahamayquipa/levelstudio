@@ -1,6 +1,6 @@
 "use client"
 
-import { Users, UsersCount, OpenDialog } from "@/components/users"
+import { Users, UsersCount, OpenDialog } from "@levelstudio/components/users"
 
 export const Main = () => {
     return (

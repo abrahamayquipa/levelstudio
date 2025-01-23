@@ -1,7 +1,7 @@
 "use client";
 
-import { User } from "@/types";
-import { fetchUsers } from "@/services/fetch-users";
+import { User } from "@levelstudio/types";
+import { fetchUsers } from "@levelstudio/services/fetch-users";
 import { useEffect, useState } from "react";
 
 export const useGetUsers = ({

@@ -1,7 +1,7 @@
 "use client"
 
 import { FC } from "react";
-import { Users as UsersReport } from "@/reports";
+import { Users as UsersReport } from "@levelstudio/reports";
 
 export const Users: FC = () => {
     const fakeData = [{name: "panky", age: 20}, {name: "abraham", age: 20}, {name: "jeff", age: 20}];

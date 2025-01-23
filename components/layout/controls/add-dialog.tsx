@@ -1,14 +1,6 @@
 import * as React from "react";
-import {
-    Dialog,
-    DialogContent,
-    DialogFooter,
-    DialogHeader,
-    DialogTitle,
-    DialogTrigger,
-} from "@levelstudio/components/ui/dialog";
-import { AddUserForm } from "./add";
-
+import { Dialog, DialogTrigger } from "../../ui/dialog";
+import { AddUser } from "@levelstudio/forms/users/add-user";
 
 // Definición del componente Button
 const Button = React.forwardRef<HTMLButtonElement, React.ButtonHTMLAttributes<HTMLButtonElement>>(
@@ -24,10 +16,13 @@ const Button = React.forwardRef<HTMLButtonElement, React.ButtonHTMLAttributes<HT
 );
 Button.displayName = "Button";
 
-export function AddUser() {
+export function AddDialog() {
     return (
-        <DialogContent className="sm:max-w-[425px]">
-            <AddUserForm />
-        </DialogContent>
+        <Dialog>
+            <DialogTrigger asChild>
+                <Button>Nuevo</Button>
+            </DialogTrigger>
+            <AddUser />
+        </Dialog>
     );
 }

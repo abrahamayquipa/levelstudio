@@ -26,8 +26,7 @@ export const Users: FC<UsersProps> = ({ rows }) => {
     const table = useReactTable({
         data: rows,
         columns,
-        getCoreRowModel: getCoreRowModel(),
-        getPaginationRowModel: getPaginationRowModel(),
+        getCoreRowModel: getCoreRowModel()
     });
 
     return (

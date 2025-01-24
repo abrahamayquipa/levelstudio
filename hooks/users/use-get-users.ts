@@ -16,7 +16,7 @@ export const useGetUsers = (): [
             age,
         })
     );
-    console.log(getUsers);
+
     /*
     useSubscription(GET_USERS, {
         onSubscriptionData: () => {

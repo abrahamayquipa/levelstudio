@@ -27,7 +27,6 @@ export const Users: FC<UsersProps> = ({ rows }) => {
         data: rows,
         columns,
         getCoreRowModel: getCoreRowModel(),
-        getPaginationRowModel: getPaginationRowModel(),
     });
 
     return (

@@ -1,7 +1,7 @@
 "use client"
 
 import { Users, UsersCount } from "@levelstudio/components/users"
-import { AddDialog } from "@levelstudio/components/users/controls/add-dialog";
+import { AddDialog } from "@levelstudio/components/users";
 
 export const Main = () => {
     return (

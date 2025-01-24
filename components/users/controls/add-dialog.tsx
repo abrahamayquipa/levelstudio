@@ -1,15 +1,17 @@
-import * as React from "react";
-import { Dialog, DialogTrigger } from "../../ui/dialog";
-import { AddUser } from "@levelstudio/forms/users/add-user";
-import { Button } from "@levelstudio/components/ui/button";
+"use client"
+
+import { useDialog } from "@levelstudio/contexts/dialog";
 
 export function AddDialog() {
+    const { openDialog } = useDialog();
+
     return (
-        <Dialog>
-            <DialogTrigger asChild>
-                <Button>Nuevo</Button>
-            </DialogTrigger>
-            <AddUser />
-        </Dialog>
+        <button
+            onClick={() =>
+                openDialog("add-user", {})
+            }
+        >
+            Nuevo
+        </button>
     );
 }

@@ -15,6 +15,7 @@ export const ColumnsUser: FC<ColumnsUserProps>  = ({data}) => {
             {data.map((item, index) => (
                 <tr key={index} className={`py-16 ${index % 2 === 0 ? "bg-[#a5a5a5] bg-opacity-10" : ""}`}>
                     <td className="px-4 py-2">{item.name}</td>
+                    <td className="px-4 py-2">{item.lastname}</td>
                     <td className="px-4 py-2">{item.age}</td>
                     <td className="flex px-4 py-2">
                         <button className="mr-8">

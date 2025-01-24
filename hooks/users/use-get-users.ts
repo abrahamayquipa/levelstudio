@@ -9,13 +9,14 @@ export const useGetUsers = (): [
 ] => {
     const { data, error, loading, refetch } = useQuery(GET_USERS);
 
-    const usersData = (data?.users || []).map(
-        ({ name, age }: any): User => ({
+    const getUsers = (data?.users || []).map(
+        ({ name, lastname, age }: any): User => ({
             name,
-            age: parseInt(age, 10),
+            lastname,
+            age,
         })
     );
-    console.log(usersData);
+    console.log(getUsers);
     /*
     useSubscription(GET_USERS, {
         onSubscriptionData: () => {
@@ -23,5 +24,5 @@ export const useGetUsers = (): [
         },
     });*/
 
-    return [usersData, loading, error];
+    return [getUsers, loading, error];
 };

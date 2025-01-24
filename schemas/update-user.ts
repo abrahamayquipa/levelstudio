@@ -5,6 +5,7 @@ export const UPDATE_USER = gql`
         userUpdated {
             id
             name
+            lastname
             age
         }
     }

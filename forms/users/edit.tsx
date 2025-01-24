@@ -28,11 +28,11 @@ const formSchema = z.object({
 
 type FormValues = z.infer<typeof formSchema>;
 
-interface EditUserProps {
+interface EditUser {
     initialValues: FormValues;
 }
 
-export const EditUser = ({ initialValues }: EditUserProps) => {
+export const EditUser = ({ initialValues }: EditUser) => {
     const [updateUser, loading, error] = useUpdateUser();
 
     const form = useForm<FormValues>({

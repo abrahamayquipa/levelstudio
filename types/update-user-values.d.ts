@@ -1,4 +1,4 @@
-export interface User {
+export interface UpdateUserValues {
     id: string;
     name: string;
     lastname: string;

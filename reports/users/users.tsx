@@ -4,7 +4,6 @@ import { FC } from "react";
 import {
     flexRender,
     getCoreRowModel,
-    getPaginationRowModel,
     useReactTable,
 } from "@tanstack/react-table";
 import {
@@ -26,7 +25,7 @@ export const Users: FC<UsersProps> = ({ rows }) => {
     const table = useReactTable({
         data: rows,
         columns,
-        getCoreRowModel: getCoreRowModel(),
+        getCoreRowModel: getCoreRowModel()
     });
 
     return (

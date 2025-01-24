@@ -17,37 +17,26 @@ import {
     Input,
 } from "@levelstudio/components/ui";
 
-const formSchema = z.object({
-    name: z.string().min(2, { message: "El nombre debe tener al menos 2 caracteres." }),
-    lastname: z.string().min(2, { message: "El apellido debe tener al menos 2 caracteres." }),
-    age: z
-        .number()
-        .min(1, { message: "La edad debe ser mayor a 0." })
-        .max(100, { message: "La edad debe ser menor a 120." }),
-});
-
-type FormValues = z.infer<typeof formSchema>;
-
-interface EditUser {
-    initialValues: FormValues;
-}
-
-export const EditUser = ({ initialValues }: EditUser) => {
+export const EditUser = ({ initialValues }: any) => {
     const [updateUser, loading, error] = useUpdateUser();
 
-    const form = useForm<FormValues>({
-        resolver: zodResolver(formSchema),
-        defaultValues: initialValues,
+    const form = useForm({
+        defaultValues: {
+            id: initialValues.id,
+            name: initialValues.name,
+            lastname: initialValues.lastname,
+            age: initialValues.age,
+        }
     });
 
-    const onSubmit = (values: FormValues) => {
-        updateUser(values);
+    const onSubmit = (values: any) => {
         console.log(values);
+        updateUser(values);
     };
 
     return (
         <Form {...form}>
-            <div className="bg-white rounded p-6">
+            <form onSubmit={form.handleSubmit(onSubmit)} className="bg-white">
                 <FormField
                     control={form.control}
                     name="name"
@@ -96,7 +85,7 @@ export const EditUser = ({ initialValues }: EditUser) => {
                     )}
                 />
                 <Button type="submit">Editar</Button>
-            </div>
+            </form>
         </Form>
     );
 };

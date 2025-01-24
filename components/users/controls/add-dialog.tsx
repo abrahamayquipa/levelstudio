@@ -7,6 +7,7 @@ export function AddDialog() {
 
     return (
         <button
+            className="mr-2 px-8 py-2 bg-[#d19b36] font-semibold text-white rounded-xl"
             onClick={() =>
                 openDialog("add-user", {})
             }

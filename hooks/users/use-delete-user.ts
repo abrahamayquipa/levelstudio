@@ -1,24 +1,21 @@
 import { useMutation } from "@apollo/client";
-import { DELETE_USER } from "@levelstudio/schemas";
-import { User } from "@levelstudio/types";
+import { GET_USERS, DELETE_USER } from "@levelstudio/schemas";
 
 export const useDeleteUser = (): [
-    (id: string) => Promise<void>,
-    boolean,
-        Error | undefined
+    deleteUser: (id: string) => Promise<void>,
+    loading: boolean,
+    Error | undefined
 ] => {
-    const [deleteUserMutation, { loading, error }] = useMutation(DELETE_USER);
+    const [deleteUser, { loading, error }] = useMutation(DELETE_USER);
 
-    const deleteUser = async (id: string) => {
-        try {
-            await deleteUserMutation({
+    return [
+        async (id: string) => {
+            await deleteUser({
                 variables: { id },
+                refetchQueries: [{ query: GET_USERS }],
             });
-            console.log(`User with id ${id} deleted successfully.`);
-        } catch (e) {
-            console.error("Error deleting user:", e);
-        }
-    };
-
-    return [deleteUser, loading, error];
+        },
+        loading,
+        error
+    ];
 };

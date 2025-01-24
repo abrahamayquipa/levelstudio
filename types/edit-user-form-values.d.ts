@@ -1,4 +1,4 @@
-export interface User {
+export interface EditUserFormValues {
     id: string;
     name: string;
     lastname: string;

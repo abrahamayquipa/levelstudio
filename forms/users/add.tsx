@@ -1,48 +1,31 @@
 "use client";
 
-import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { z } from "zod";
 import { useCreateUser } from "@levelstudio/hooks";
 
 import {
     Button,
     Form,
     FormControl,
-    FormDescription,
     FormField,
     FormItem,
     FormLabel,
-    FormMessage,
     Input,
 } from "@levelstudio/components/ui";
-
-const formSchema = z.object({
-    name: z.string().min(2, { message: "El nombre debe tener al menos 2 caracteres." }),
-    lastname: z.string().min(2, { message: "El apellido debe tener al menos 2 caracteres." }),
-    age: z
-        .number()
-        .min(1, { message: "La edad debe ser mayor a 0." })
-        .max(100, { message: "La edad debe ser menor a 120." }),
-});
-
-type FormValues = z.infer<typeof formSchema>;
 
 export const AddUser = () => {
     const [createUser, loading, error] = useCreateUser();
 
-    const form = useForm<FormValues>({
-        resolver: zodResolver(formSchema),
+    const form = useForm({
         defaultValues: {
             name: "",
             lastname: "",
-            age: 0,
+            age: ""
         },
     });
 
-    const onSubmit = (values: FormValues) => {
+    const onSubmit = (values: any) => {
         createUser(values);
-        console.log(values);
     };
 
     return (
@@ -57,8 +40,6 @@ export const AddUser = () => {
                             <FormControl>
                                 <Input placeholder="Escribe tu nombre" {...field} />
                             </FormControl>
-                            <FormDescription>Por favor, introduce tu nombre.</FormDescription>
-                            <FormMessage />
                         </FormItem>
                     )}
                 />
@@ -71,8 +52,6 @@ export const AddUser = () => {
                             <FormControl>
                                 <Input placeholder="Escribe tus apellidos" {...field} />
                             </FormControl>
-                            <FormDescription>Por favor, introduce tus apellidos.</FormDescription>
-                            <FormMessage />
                         </FormItem>
                     )}
                 />
@@ -83,15 +62,8 @@ export const AddUser = () => {
                         <FormItem>
                             <FormLabel>Edad</FormLabel>
                             <FormControl>
-                                <Input
-                                    type="number"
-                                    placeholder="Escribe tu edad"
-                                    {...field}
-                                    onChange={(e) => field.onChange(parseInt(e.target.value, 10) || 0)}
-                                />
+                                <Input placeholder="Escribe tu edad" {...field} />
                             </FormControl>
-                            <FormDescription>Introduce tu edad en años.</FormDescription>
-                            <FormMessage />
                         </FormItem>
                     )}
                 />

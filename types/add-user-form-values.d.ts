@@ -1,5 +1,4 @@
-export interface User {
-    id: string;
+export interface AddUserFormValues {
     name: string;
     lastname: string;
     age: string;

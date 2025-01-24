@@ -1,5 +1,4 @@
-export interface User {
-    id: string;
+export interface NewUserValues {
     name: string;
     lastname: string;
     age: string;

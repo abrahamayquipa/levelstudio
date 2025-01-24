@@ -1,8 +1,8 @@
 import { gql } from "@apollo/client";
 
 export const DELETE_USER = gql`
-    subscription onDeleteUser {
-        userDeleted {
+    mutation deleteUser($id: ID!) {
+        deleteUser(id: $id) {
             id
         }
     }

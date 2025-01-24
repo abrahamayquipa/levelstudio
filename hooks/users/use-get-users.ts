@@ -10,7 +10,8 @@ export const useGetUsers = (): [
     const { data, error, loading, refetch } = useQuery(GET_USERS);
 
     const getUsers = (data?.users || []).map(
-        ({ name, lastname, age }: any): User => ({
+        ({id, name, lastname, age }: any): User => ({
+            id,
             name,
             lastname,
             age,

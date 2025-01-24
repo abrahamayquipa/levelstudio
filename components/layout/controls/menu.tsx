@@ -17,7 +17,7 @@ export const Menu: FC = () => {
     return (
         <div
             className={`bg-[#5f6c37] transition-all duration-300 ${
-                isOpen ? "w-48" : "w-0 px-0"
+                isOpen ? "w-56" : "w-0 px-0"
             } flex flex-col justify-between items-start shadow-lg relative h-full rounded-r-3xl`}
         >
             <button

@@ -1,27 +1,77 @@
-"use client"
+"use client";
 
 import { FC } from "react";
-import { ColumnsUser } from "@levelstudio/reports";
+import {
+    flexRender,
+    getCoreRowModel,
+    getPaginationRowModel,
+    useReactTable,
+} from "@tanstack/react-table";
+import {
+    Table,
+    TableBody,
+    TableCell,
+    TableHead,
+    TableHeader,
+    TableRow,
+} from "@levelstudio/components/ui";
+import { columns } from "@levelstudio/reports/users";
 import { User } from "@levelstudio/types";
 
-interface UserProps {
+interface UsersProps {
     rows: User[];
 }
 
-export const Users: FC<UserProps> = ({ rows }) => {
+export const Users: FC<UsersProps> = ({ rows }) => {
+    const table = useReactTable({
+        data: rows,
+        columns,
+        getCoreRowModel: getCoreRowModel(),
+        getPaginationRowModel: getPaginationRowModel(),
+    });
+
     return (
-        <table className="w-full mt-4 table-fixed">
-            <thead>
-                <tr>
-                    <td className="w-[40%] px-4 py-2 font-medium">Nombre</td>
-                    <td className="w-[40%] px-4 py-2 font-medium">Apellidos</td>
-                    <td className="px-4 py-2 font-medium">Edad</td>
-                    <td className="px-4 py-2 font-medium">Operaciones</td>
-                </tr>
-            </thead>
-            <tbody>
-                <ColumnsUser data={rows}/>
-            </tbody>
-        </table>
+        <div className="w-full">
+            <Table>
+                <TableHeader>
+                    {table.getHeaderGroups().map((headerGroup) => (
+                        <TableRow key={headerGroup.id}>
+                            {headerGroup.headers.map((header) => (
+                                <TableHead key={header.id} className="text-[16px] font-medium">
+                                    {header.isPlaceholder
+                                        ? null
+                                        : flexRender(
+                                            header.column.columnDef.header,
+                                            header.getContext()
+                                        )}
+                                </TableHead>
+                            ))}
+                        </TableRow>
+                    ))}
+                </TableHeader>
+                <TableBody>
+                    {table.getRowModel().rows.length ? (
+                        table.getRowModel().rows.map((row) => (
+                            <TableRow key={row.id} className={`text-[14px] ${ Number(row.id) % 2 === 0 ? "bg-[#a5a5a5] bg-opacity-10" : ""}`}>
+                                {row.getVisibleCells().map((cell) => (
+                                    <TableCell key={cell.id}>
+                                        {flexRender(
+                                            cell.column.columnDef.cell,
+                                            cell.getContext()
+                                        )}
+                                    </TableCell>
+                                ))}
+                            </TableRow>
+                        ))
+                    ) : (
+                        <TableRow>
+                            <TableCell colSpan={columns.length} className="text-center">
+                                No se encontraron resultados.
+                            </TableCell>
+                        </TableRow>
+                    )}
+                </TableBody>
+            </Table>
+        </div>
     );
-}
+};

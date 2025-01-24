@@ -3,8 +3,10 @@ import {
     GET_USERS,
     CREATE_USER
 } from "@levelstudio/schemas"
-import { NewUserValues } from "@levelstudio/types";
-import { AddUserFormValues } from "@levelstudio/types";
+import {
+    NewUserValues,
+    AddUserFormValues
+} from "@levelstudio/types";
 
 export const useCreateUser = (): [
     createUser: (user: NewUserValues) => Promise<void>,

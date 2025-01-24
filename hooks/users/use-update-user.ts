@@ -1,26 +1,33 @@
-import { useQuery, useSubscription } from "@apollo/client";
+import { useMutation } from "@apollo/client";
 import {
     GET_USERS,
     UPDATE_USER
 } from "@levelstudio/schemas"
+import {
+    UpdateUserValues,
+    EditUserFormValues
+} from "@levelstudio/types";
 
 export const useUpdateUser = (): [
-    (variables: { id: number; name: string; age: number }) => Promise<void>,
-    boolean,
+    updateUser: (user: UpdateUserValues) => Promise<void>,
+    loading: boolean,
     Error | undefined
 ] => {
-    const { error, loading, refetch } = useQuery(GET_USERS);
+    const [updateUser, { error, loading }] = useMutation(UPDATE_USER);
 
-    const updateUser = async (variables: { id: number; name: string; age: number }): Promise<void> => {
-        console.log(variables);
-        await refetch();
-    };
-    /*
-    useSubscription(UPDATE_USER, {
-        onSubscriptionData: () => {
-            refetch();
+    return [
+        async (a: EditUserFormValues): Promise<void> => {
+            await updateUser({
+                variables: {
+                    id: a.id,
+                    name: a.name,
+                    lastname: a.lastname,
+                    age: a.age,
+                },
+                refetchQueries: [{ query: GET_USERS }],
+            });
         },
-    });*/
-
-    return [updateUser, loading, error];
+        loading,
+        error
+    ];
 };

@@ -1,10 +1,10 @@
 "use client";
 
-import * as React from "react";
 import { ColumnDef } from "@tanstack/react-table";
 import { User } from "@levelstudio/types";
 import { DeleteIcon, EditIcon } from "@levelstudio/components/ui";
 import { useDialog } from "@levelstudio/contexts/dialog";
+import { useDeleteUser } from "@levelstudio/hooks/users/use-delete-user";
 
 export const columns: ColumnDef<User>[] = [
     {
@@ -36,15 +36,23 @@ export const columns: ColumnDef<User>[] = [
         header: "",
         cell: ({ row }) => {
             const { openDialog } = useDialog();
+            const [deleteUser] = useDeleteUser();
 
             return (
                 <div className="flex w-[10%] space-x-8">
-                    <button>
+                    <button
+                        onClick={() =>
+                            deleteUser(row.original.id)
+                        }
+                    >
                         <DeleteIcon/>
                     </button>
                     <button
                         onClick={() =>
-                            openDialog("edit-user", { initialValues: row.original })
+                            openDialog("edit-user", {
+                                id: row.original.id,
+                                initialValues: row.original
+                            })
                         }
                     >
                         <EditIcon/>

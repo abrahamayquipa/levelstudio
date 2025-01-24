@@ -1,43 +1,22 @@
-"use client";
+import { useQuery } from "@apollo/client";
+import { GET_USERS } from "@levelstudio/schemas"
+import { User } from "@levelstudio/types";
 
-import { User } from "@/types";
-import { fetchUsers } from "@/services/fetch-users";
-import { useEffect, useState } from "react";
+export const useGetUsers = (): [
+    users: User[],
+    loading: boolean,
+    Error | undefined
+] => {
+    const { data, error, loading, refetch } = useQuery(GET_USERS);
 
-export const useGetUsers = ({
-    search,
-    pageSize,
-} : {
-    search: string;
-    pageSize?: number;
-}) => {
-    const [users, setUsers] = useState<User[]>([]);
-    const [error, setError] = useState("");
-    const [loading, setLoading] = useState(search ? true : false);
+    const getUsers = (data?.users || [])
+        .map(({ id, name, lastname, age }: User) => ({
+            id,
+            name,
+            lastname,
+            age,
+        })
+    );
 
-    const getUsers = async () => {
-        try {
-            if (search) {
-                setLoading(true);
-                const requestedUsers = await fetchUsers({ search, pageSize });
-                setUsers(requestedUsers);
-                setError("");
-            }
-        } catch (error) {
-            if (error instanceof Error) {
-                setError(error.message);
-                setUsers([]);
-            }
-        } finally {
-            setLoading(false);
-        }
-    };
-
-    useEffect(() => {
-        if (search) {
-            getUsers();
-        }
-    }, [search, pageSize]);
-
-    return { users, loading, error };
+    return [getUsers, loading, error];
 };

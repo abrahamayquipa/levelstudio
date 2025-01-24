@@ -1,1 +1,1 @@
-export * from "./open-dialog";
+export * from "./add-dialog";

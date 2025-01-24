@@ -1,11 +1,14 @@
-import { Main } from "@/components/layout";
-import {Menu} from "@/components/layout/controls/menu";
+import { Main, Menu } from "@levelstudio/components/layout";
+import { DialogProvider } from "@levelstudio/contexts/dialog";
+import { dialogs } from "@levelstudio/components/users";
 
 export default function Home() {
     return (
-        <section className="flex">
-            <Menu />
-            <Main />
-        </section>
+        <DialogProvider dialogs={dialogs}>
+            <section className="flex">
+                <Menu />
+                <Main />
+            </section>
+        </DialogProvider>
     );
 }

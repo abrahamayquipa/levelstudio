@@ -1,32 +1,75 @@
-"use client"
+"use client";
 
-import { User } from "@/types";
 import { FC } from "react";
-import Image from "next/image";
-import editIcon from "@/components/icons/edit.png";
-import deleteIcon from "@/components/icons/delete.png";
+import {
+    flexRender,
+    getCoreRowModel,
+    useReactTable,
+} from "@tanstack/react-table";
+import {
+    Table,
+    TableBody,
+    TableCell,
+    TableHead,
+    TableHeader,
+    TableRow,
+} from "@levelstudio/components/ui";
+import { columns } from "@levelstudio/reports/users";
+import { User } from "@levelstudio/types";
 
-interface UserProps {
-    data: User[];
+interface UsersProps {
+    rows: User[];
 }
 
-export const Users: FC<UserProps> = ({data}) => {
+export const Users: FC<UsersProps> = ({ rows }) => {
+    const table = useReactTable({
+        data: rows,
+        columns,
+        getCoreRowModel: getCoreRowModel()
+    });
+
     return (
-        <tbody>
-            {data.map((item, index) => (
-                <tr key={index} className={`py-16 ${index % 2 === 0 ? "bg-[#a5a5a5] bg-opacity-10" : ""}`}>
-                    <td className="px-4 py-2">{item.name}</td>
-                    <td className="px-4 py-2">{item.age}</td>
-                    <td className="flex px-4 py-2">
-                        <button className="mr-8">
-                            <Image src={deleteIcon} width={15} height={15} alt="delete"/>
-                        </button>
-                        <button>
-                            <Image src={editIcon} width={25} height={25}  alt="edit"/>
-                        </button>
-                    </td>
-                </tr>
-            ))}
-        </tbody>
+        <div className="w-full">
+            <Table>
+                <TableHeader>
+                    {table.getHeaderGroups().map((headerGroup) => (
+                        <TableRow key={headerGroup.id}>
+                            {headerGroup.headers.map((header) => (
+                                <TableHead key={header.id} className="text-[16px] font-medium">
+                                    {header.isPlaceholder
+                                        ? null
+                                        : flexRender(
+                                            header.column.columnDef.header,
+                                            header.getContext()
+                                        )}
+                                </TableHead>
+                            ))}
+                        </TableRow>
+                    ))}
+                </TableHeader>
+                <TableBody>
+                    {table.getRowModel().rows.length ? (
+                        table.getRowModel().rows.map((row) => (
+                            <TableRow key={row.id} className={`text-[14px] ${ Number(row.id) % 2 === 0 ? "bg-[#a5a5a5] bg-opacity-10" : ""}`}>
+                                {row.getVisibleCells().map((cell) => (
+                                    <TableCell key={cell.id}>
+                                        {flexRender(
+                                            cell.column.columnDef.cell,
+                                            cell.getContext()
+                                        )}
+                                    </TableCell>
+                                ))}
+                            </TableRow>
+                        ))
+                    ) : (
+                        <TableRow>
+                            <TableCell colSpan={columns.length} className="text-center">
+                                No se encontraron resultados.
+                            </TableCell>
+                        </TableRow>
+                    )}
+                </TableBody>
+            </Table>
+        </div>
     );
-}
+};

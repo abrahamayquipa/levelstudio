@@ -5,11 +5,11 @@ export const dialogs: Dialog[] = [
     {
         name: "add-user",
         component: AddUser,
-        title: "Registrar",
+        title: "Añadir usuario",
     },
     {
         name: "edit-user",
         component: EditUser,
-        title: "Editar",
+        title: "Editar usuario",
     },
 ];

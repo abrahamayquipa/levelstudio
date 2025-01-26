@@ -10,52 +10,43 @@ export const columns: ColumnDef<User>[] = [
     {
         accessorKey: "name",
         header: "Nombre",
-        cell: ({ row }) =>
-            <div className="w-[40%]">
-                {row.getValue("name")}
-            </div>,
+        size: 180,
+        cell: ({ row }) => <div>{row.getValue("name")}</div>,
     },
     {
         accessorKey: "lastname",
         header: "Apellidos",
-        cell: ({ row }) =>
-            <div className="w-[40%]">
-                {row.getValue("lastname")}
-            </div>,
+        size: 180,
+        cell: ({ row }) => <div>{row.getValue("lastname")}</div>,
     },
     {
         accessorKey: "age",
         header: "Edad",
-        cell: ({ row }) =>
-            <div className="w-[10%]">
-                {row.getValue("age")}
-            </div>,
+        size: 20,
+        cell: ({ row }) => <div>{row.getValue("age")}</div>,
     },
     {
         id: "actions",
         header: "",
+        size: 20,
         cell: ({ row }) => {
             const { openDialog } = useDialog();
             const [deleteUser] = useDeleteUser();
 
             return (
-                <div className="flex w-[10%] space-x-8">
-                    <button
-                        onClick={() =>
-                            deleteUser(row.original.id)
-                        }
-                    >
-                        <DeleteIcon/>
+                <div className="flex space-x-2">
+                    <button onClick={() => deleteUser(row.original.id)}>
+                        <DeleteIcon />
                     </button>
                     <button
                         onClick={() =>
                             openDialog("edit-user", {
                                 id: row.original.id,
-                                initialValues: row.original
+                                initialValues: row.original,
                             })
                         }
                     >
-                        <EditIcon/>
+                        <EditIcon />
                     </button>
                 </div>
             );

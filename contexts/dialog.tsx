@@ -14,6 +14,7 @@ import {
     DialogHeader,
     DialogTitle,
 } from "@levelstudio/components/ui";
+import { GreenLeafIcon } from "@levelstudio/components/ui";
 
 export type Dialog = {
     name: string;
@@ -76,10 +77,11 @@ export const DialogProvider: FC<UseDialog> = ({ children, dialogs }) => {
         >
             {children}
             <DialogComponent open={open} onOpenChange={setOpen}>
-                <DialogContent className="sm:max-w-[425px]">
+                <DialogContent className="w-[400px] bg-[#f6f5f1] rounded-xl">
                     <DialogHeader>
                         {dialog.title && (
-                            <DialogTitle className="text-center t-title-large font-medium">
+                            <DialogTitle className="flex items-center t-title-large font-normal">
+                                <GreenLeafIcon className="mr-2" />
                                 {dialog.title}
                             </DialogTitle>
                         )}
@@ -89,6 +91,7 @@ export const DialogProvider: FC<UseDialog> = ({ children, dialogs }) => {
                             </DialogDescription>
                         )}
                     </DialogHeader>
+                    <hr className="h-px bg-[#dedede]" />
                     <dialog.component {...current.options} />
                 </DialogContent>
             </DialogComponent>

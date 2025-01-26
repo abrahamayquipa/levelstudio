@@ -25,23 +25,27 @@ export const Users: FC<UsersProps> = ({ rows }) => {
     const table = useReactTable({
         data: rows,
         columns,
-        getCoreRowModel: getCoreRowModel()
+        getCoreRowModel: getCoreRowModel(),
     });
 
     return (
-        <div className="w-full">
-            <Table>
+        <div className="w-full overflow-x-auto">
+            <Table className="table-fixed">
                 <TableHeader>
                     {table.getHeaderGroups().map((headerGroup) => (
                         <TableRow key={headerGroup.id}>
                             {headerGroup.headers.map((header) => (
-                                <TableHead key={header.id} className="text-[16px] font-medium">
+                                <TableHead
+                                    key={header.id}
+                                    className="text-[16px] font-medium"
+                                    style={{ width: header.column.getSize() }}
+                                >
                                     {header.isPlaceholder
                                         ? null
                                         : flexRender(
-                                            header.column.columnDef.header,
-                                            header.getContext()
-                                        )}
+                                              header.column.columnDef.header,
+                                              header.getContext()
+                                          )}
                                 </TableHead>
                             ))}
                         </TableRow>
@@ -50,9 +54,20 @@ export const Users: FC<UsersProps> = ({ rows }) => {
                 <TableBody>
                     {table.getRowModel().rows.length ? (
                         table.getRowModel().rows.map((row) => (
-                            <TableRow key={row.id} className={`text-[14px] ${ Number(row.id) % 2 === 0 ? "bg-[#a5a5a5] bg-opacity-10" : ""}`}>
+                            <TableRow
+                                key={row.id}
+                                className={`text-[14px] ${
+                                    Number(row.id) % 2 === 0
+                                        ? "bg-[#a5a5a5] bg-opacity-10"
+                                        : ""
+                                }`}
+                            >
                                 {row.getVisibleCells().map((cell) => (
-                                    <TableCell key={cell.id}>
+                                    <TableCell
+                                        key={cell.id}
+                                        className="py-2"
+                                        style={{ width: cell.column.getSize() }}
+                                    >
                                         {flexRender(
                                             cell.column.columnDef.cell,
                                             cell.getContext()
@@ -63,7 +78,10 @@ export const Users: FC<UsersProps> = ({ rows }) => {
                         ))
                     ) : (
                         <TableRow>
-                            <TableCell colSpan={columns.length} className="text-center">
+                            <TableCell
+                                colSpan={columns.length}
+                                className="text-center"
+                            >
                                 No se encontraron resultados.
                             </TableCell>
                         </TableRow>

@@ -96,13 +96,11 @@ export const AddUser = () => {
                                     {...field}
                                 />
                             </FormControl>
-                            <FormMessage>
-                                {fieldState.error?.message && (
-                                    <span className="text-sm text-red-500">
-                                        {fieldState.error.message}
-                                    </span>
-                                )}
-                            </FormMessage>
+                            {fieldState.error?.message && (
+                                <span className="text-sm text-red-500">
+                                    {fieldState.error.message}
+                                </span>
+                            )}
                         </FormItem>
                     )}
                 />
@@ -124,13 +122,11 @@ export const AddUser = () => {
                                     {...field}
                                 />
                             </FormControl>
-                            <FormMessage>
-                                {fieldState.error?.message && (
-                                    <span className="text-sm text-red-500">
-                                        {fieldState.error.message}
-                                    </span>
-                                )}
-                            </FormMessage>
+                            {fieldState.error?.message && (
+                                <span className="text-sm text-red-500">
+                                    {fieldState.error.message}
+                                </span>
+                            )}
                         </FormItem>
                     )}
                 />
@@ -150,13 +146,11 @@ export const AddUser = () => {
                                     {...field}
                                 />
                             </FormControl>
-                            <FormMessage>
-                                {fieldState.error?.message && (
-                                    <span className="text-sm text-red-500">
-                                        {fieldState.error.message}
-                                    </span>
-                                )}
-                            </FormMessage>
+                            {fieldState.error?.message && (
+                                <span className="text-sm text-red-500">
+                                    {fieldState.error.message}
+                                </span>
+                            )}
                         </FormItem>
                     )}
                 />

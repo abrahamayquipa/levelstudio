@@ -4,7 +4,6 @@ import { ColumnDef } from "@tanstack/react-table";
 import { User } from "@levelstudio/types";
 import { DeleteIcon, EditIcon } from "@levelstudio/components/ui";
 import { useDialog } from "@levelstudio/contexts/dialog";
-import { useDeleteUser } from "@levelstudio/hooks/users/use-delete-user";
 
 export const columns: ColumnDef<User>[] = [
     {
@@ -31,11 +30,16 @@ export const columns: ColumnDef<User>[] = [
         size: 20,
         cell: ({ row }) => {
             const { openDialog } = useDialog();
-            const [deleteUser] = useDeleteUser();
 
             return (
                 <div className="flex space-x-2">
-                    <button onClick={() => deleteUser(row.original.id)}>
+                    <button
+                        onClick={() =>
+                            openDialog("delete-user", {
+                                userId: row.original.id,
+                            })
+                        }
+                    >
                         <DeleteIcon />
                     </button>
                     <button

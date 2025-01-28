@@ -21,11 +21,11 @@ const userSchema = z.object({
     id: z.string(),
     name: z
         .string()
-        .regex(/^[A-Za-z\s]+$/, "El nombre solo puede contener letras y espacios.")
+        .regex(/^[A-Za-z\sÁÉÍÓÚáéíóúÑñ]+$/, "El nombre solo puede contener letras y espacios.")
         .min(1, "El nombre es obligatorio."),
     lastname: z
         .string()
-        .regex(/^[A-Za-z\s]+$/, "El apellido solo puede contener letras y espacios.")
+        .regex(/^[A-Za-z\sÁÉÍÓÚáéíóúÑñ]+$/, "El apellido solo puede contener letras y espacios.")
         .min(1, "El apellido es obligatorio."),
     age: z
         .string()
